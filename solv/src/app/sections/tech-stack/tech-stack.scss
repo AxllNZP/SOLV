@@ -1,0 +1,103 @@
+.tech-stack {
+  background: var(--color-bg-dark);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2xl);
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__group {
+    padding: var(--space-2xl);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+
+    &:hover {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-glow);
+    }
+  }
+
+  &__group-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--fs-xl);
+    font-weight: 700;
+    margin-bottom: var(--space-xl);
+    color: var(--color-text-heading);
+  }
+
+  &__group-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+  }
+
+  &__items {
+    display: flex;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    cursor: default;
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+
+    &:hover {
+      .tech-stack__item-icon {
+        transform: translateY(-6px) scale(1.1);
+        box-shadow: 0 8px 30px rgba(108, 92, 231, 0.3);
+      }
+    }
+  }
+
+  &__item-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--item-color, var(--color-primary));
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    }
+
+    span {
+      font-family: var(--font-heading);
+      font-size: var(--fs-lg);
+      font-weight: 800;
+      color: white;
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  &__item-name {
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+}

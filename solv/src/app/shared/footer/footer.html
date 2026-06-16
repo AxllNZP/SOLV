@@ -1,0 +1,84 @@
+<footer class="footer">
+  <div class="container">
+    <!-- Top Section -->
+    <div class="footer__top">
+      <!-- Brand -->
+      <div class="footer__brand">
+        <a class="footer__logo" (click)="scrollTo('#hero')">
+          <span class="footer__logo-icon">{{ logoIcon }}</span>
+          <span class="footer__logo-text">Solv</span>
+        </a>
+        <p class="footer__brand-desc">
+          Crafting digital experiences and scalable solutions for forward-thinking businesses.
+        </p>
+        <div class="footer__socials">
+          @for (social of socialLinks; track social.name) {
+            <a
+              class="footer__social"
+              [href]="social.url"
+              [attr.aria-label]="social.name"
+              target="_blank"
+              rel="noopener"
+            >
+              {{ social.icon }}
+            </a>
+          }
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer__links-col">
+        <h4 class="footer__links-title">Quick Links</h4>
+        <ul class="footer__links">
+          @for (link of quickLinks; track link.href) {
+            <li>
+              <a class="footer__link" (click)="scrollTo(link.href)">{{ link.label }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="footer__links-col">
+        <h4 class="footer__links-title">Services</h4>
+        <ul class="footer__links">
+          @for (service of serviceLinks; track service) {
+            <li>
+              <a class="footer__link" (click)="scrollTo('#services')">{{ service }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer__links-col">
+        <h4 class="footer__links-title">Contact</h4>
+        <ul class="footer__links">
+          <li>
+            <span class="footer__link">hello&#64;solv.dev</span>
+          </li>
+          <li>
+            <span class="footer__link">+1 (555) 123-4567</span>
+          </li>
+          <li>
+            <span class="footer__link">San Francisco, CA</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="footer__divider"></div>
+
+    <!-- Bottom Section -->
+    <div class="footer__bottom">
+      <p class="footer__copyright">
+        &copy; {{ currentYear }} Solv. All rights reserved.
+      </p>
+      <div class="footer__bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>

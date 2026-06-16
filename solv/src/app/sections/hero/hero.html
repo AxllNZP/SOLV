@@ -1,0 +1,69 @@
+<section id="hero" class="hero">
+  <!-- Animated Background -->
+  <div class="hero__bg">
+    <div class="hero__bg-gradient"></div>
+    <div class="hero__bg-grid"></div>
+    <div class="hero__bg-orbs">
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+      <div class="hero__orb hero__orb--3"></div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="hero__content container">
+    <div class="hero__badge">
+      <span class="hero__badge-dot"></span>
+      Trusted by 50+ companies worldwide
+    </div>
+
+    <h1 class="hero__title">
+      We Build<br />
+      <span class="hero__title-gradient">{{ displayedText() }}</span>
+      <span class="hero__cursor" [class.blink]="!isDeleting()">|</span>
+    </h1>
+
+    <p class="hero__description">
+      Solv is a software development company that crafts modern web applications,
+      mobile experiences, and cloud infrastructure for forward-thinking businesses.
+    </p>
+
+    <div class="hero__actions">
+      <button class="hero__btn hero__btn--primary" (click)="scrollToContact()">
+        <span>Start a Project</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+      <button class="hero__btn hero__btn--secondary" (click)="scrollToPortfolio()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
+        <span>View Our Work</span>
+      </button>
+    </div>
+
+    <div class="hero__stats">
+      <div class="hero__stat">
+        <span class="hero__stat-number">150+</span>
+        <span class="hero__stat-label">Projects Delivered</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-number">98%</span>
+        <span class="hero__stat-label">Client Satisfaction</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-number">12+</span>
+        <span class="hero__stat-label">Years Experience</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="hero__scroll-indicator" [class.hidden]="!showScrollIndicator()">
+    <div class="hero__scroll-mouse">
+      <div class="hero__scroll-wheel"></div>
+    </div>
+    <span>Scroll Down</span>
+  </div>
+</section>

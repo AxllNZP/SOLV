@@ -1,0 +1,42 @@
+<section id="services" class="services section">
+  <div class="container">
+    <h2 class="section-title">Our <span>Services</span></h2>
+    <p class="section-subtitle">
+      We deliver end-to-end technology solutions tailored to your business needs.
+      Click any card to explore the details.
+    </p>
+
+    <div class="services__grid">
+      @for (service of services; track service.title; let i = $index) {
+        <div
+          class="services__card"
+          [class.flipped]="flippedCard() === i"
+          (click)="toggleFlip(i)"
+          [style.--accent]="service.color"
+        >
+          <!-- Front -->
+          <div class="services__card-front">
+            <div class="services__card-icon">{{ service.icon }}</div>
+            <h3 class="services__card-title">{{ service.title }}</h3>
+            <p class="services__card-desc">{{ service.description }}</p>
+            <span class="services__card-flip-hint">Click to explore →</span>
+          </div>
+
+          <!-- Back -->
+          <div class="services__card-back">
+            <h3 class="services__card-title">{{ service.title }}</h3>
+            <ul class="services__card-details">
+              @for (detail of service.details; track detail) {
+                <li>
+                  <span class="services__card-check">✓</span>
+                  {{ detail }}
+                </li>
+              }
+            </ul>
+            <span class="services__card-flip-hint">← Click to flip back</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

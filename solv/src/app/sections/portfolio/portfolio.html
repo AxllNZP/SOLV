@@ -1,0 +1,95 @@
+<section id="portfolio" class="portfolio section">
+  <div class="container">
+    <h2 class="section-title">Our <span>Portfolio</span></h2>
+    <p class="section-subtitle">
+      A showcase of our recent projects across various industries and technologies.
+    </p>
+
+    <!-- Filter Tags -->
+    <div class="portfolio__filters">
+      @for (tag of tags; track tag) {
+        <button
+          class="portfolio__filter-btn"
+          [class.active]="selectedTag() === tag"
+          (click)="filterByTag(tag)"
+        >
+          {{ tag }}
+        </button>
+      }
+    </div>
+
+    <!-- Project Grid -->
+    <div class="portfolio__grid">
+      @for (project of filteredProjects; track project.title) {
+        <div class="portfolio__card" (click)="openModal(project)">
+          <div class="portfolio__card-image">
+            <div class="portfolio__card-placeholder">
+              <span>{{ project.category }}</span>
+            </div>
+            <div class="portfolio__card-overlay">
+              <span class="portfolio__card-view">View Details</span>
+            </div>
+          </div>
+          <div class="portfolio__card-info">
+            <h3 class="portfolio__card-title">{{ project.title }}</h3>
+            <p class="portfolio__card-desc">{{ project.description }}</p>
+            <div class="portfolio__card-tags">
+              @for (tag of project.tags; track tag) {
+                <span class="portfolio__card-tag">{{ tag }}</span>
+              }
+            </div>
+            <a class="portfolio__card-link" [href]="project.liveUrl" target="_blank" (click)="$event.stopPropagation()">
+              Live Demo
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Modal -->
+  @if (selectedProject(); as project) {
+    <div class="portfolio__modal" (click)="closeModal()">
+      <div class="portfolio__modal-content" (click)="$event.stopPropagation()">
+        <button class="portfolio__modal-close" (click)="closeModal()">✕</button>
+
+        <div class="portfolio__modal-header">
+          <span class="portfolio__modal-category">{{ project.category }}</span>
+          <h3 class="portfolio__modal-title">{{ project.title }}</h3>
+          <p class="portfolio__modal-desc">{{ project.description }}</p>
+        </div>
+
+        <div class="portfolio__modal-features">
+          <h4>Key Features</h4>
+          <ul>
+            @for (feature of project.features; track feature) {
+              <li>
+                <span class="portfolio__modal-check">✓</span>
+                {{ feature }}
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="portfolio__modal-tags">
+          <h4>Technologies Used</h4>
+          <div class="portfolio__modal-tag-list">
+            @for (tag of project.tags; track tag) {
+              <span class="portfolio__modal-tag">{{ tag }}</span>
+            }
+          </div>
+        </div>
+
+        <a class="portfolio__modal-btn" [href]="project.liveUrl" target="_blank">
+          Visit Live Site
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  }
+</section>
