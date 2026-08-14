@@ -16,6 +16,7 @@
   &__track {
     flex: 1;
     position: relative;
+    min-height: 320px;
     overflow: hidden;
     border-radius: var(--radius-lg);
   }
