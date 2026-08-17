@@ -77,6 +77,13 @@
   --transition-slow: 0.5s ease;
   --transition-spring: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
+  /* Scroll Reveal Motion (para uso con appScrollReveal) */
+  --motion-reveal-duration: 0.8s;
+  --motion-reveal-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-reveal-distance: 32px;
+  --transition-reveal: opacity var(--motion-reveal-duration) var(--motion-reveal-easing),
+    transform var(--motion-reveal-duration) var(--motion-reveal-easing);
+
   /* Z-index */
   --z-dropdown: 100;
   --z-sticky: 200;
@@ -181,6 +188,18 @@ input, textarea, select {
   font-size: var(--fs-md);
   max-width: 600px;
   margin: 0 auto var(--space-3xl);
+}
+
+/* Scroll reveal utility — usar junto con [appScrollReveal] */
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--motion-reveal-distance));
+  transition: var(--transition-reveal);
+
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ---------- Scrollbar ---------- */
