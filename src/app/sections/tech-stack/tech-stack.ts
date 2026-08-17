@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
 
 interface TechItem {
   name: string;
@@ -14,6 +15,7 @@ interface TechGroup {
 @Component({
   selector: 'app-tech-stack',
   standalone: true,
+  imports: [ScrollRevealDirective],
   templateUrl: './tech-stack.html',
   styleUrl: './tech-stack.scss',
 })

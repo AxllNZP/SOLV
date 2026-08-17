@@ -9,6 +9,7 @@
       @for (group of groups; track group.category; let groupIndex = $index) {
         <div
           class="tech-stack__group"
+          appScrollReveal
           [style.animation-delay]="(groupIndex * 0.15) + 's'"
         >
           <h3 class="tech-stack__group-title">
