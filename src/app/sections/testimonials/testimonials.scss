@@ -14,27 +14,25 @@
   }
 
   &__track {
-    flex: 1;
-    position: relative;
-    min-height: 320px;
-    overflow: hidden;
-    border-radius: var(--radius-lg);
-  }
+  flex: 1;
+  display: grid;
+  border-radius: var(--radius-lg);
+}
 
-  &__slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transform: translateX(40px);
-    transition: all 0.5s ease;
-    pointer-events: none;
+&__slide {
+  grid-column: 1;
+  grid-row: 1;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.5s ease;
+  pointer-events: none;
 
-    &.active {
-      opacity: 1;
-      transform: translateX(0);
-      pointer-events: all;
-    }
+  &.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
   }
+}
 
   &__card {
     background: var(--color-bg-card);

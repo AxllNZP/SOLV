@@ -11,6 +11,7 @@
         <button
           class="portfolio__filter-btn"
           [class.active]="selectedTag() === tag"
+          [attr.aria-current]="selectedTag() === tag ? 'true' : null"
           (click)="filterByTag(tag)"
         >
           {{ tag }}
@@ -54,7 +55,7 @@
   @if (selectedProject(); as project) {
     <div class="portfolio__modal" (click)="closeModal()">
       <div class="portfolio__modal-content" (click)="$event.stopPropagation()">
-        <button class="portfolio__modal-close" (click)="closeModal()">✕</button>
+        <button class="portfolio__modal-close" (click)="closeModal()" aria-label="Close project details">✕</button>
 
         <div class="portfolio__modal-header">
           <span class="portfolio__modal-category">{{ project.category }}</span>

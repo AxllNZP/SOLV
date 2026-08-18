@@ -172,13 +172,9 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
 
   private drawParticle(p: FlowParticle): void {
     if (!this.ctx) return;
-    this.ctx.save();
-    const blur = this.isMobile ? 0 : p.blur;
-    this.ctx.filter = blur > 0 ? `blur(${blur}px)` : 'none';
     this.ctx.font = `${p.size}px 'JetBrains Mono', monospace`;
     this.ctx.fillStyle = `rgba(${p.color}, ${p.opacity})`;
     this.ctx.fillText(p.text, p.x, p.y);
-    this.ctx.restore();
   }
 
   private drawStatic(): void {
