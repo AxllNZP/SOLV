@@ -42,9 +42,9 @@ const DENSITY_MAP: Record<string, number[]> = {
 };
 
 const LAYER_CONFIG: LayerConfig[] = [
-  { speed: 0.12, size: 11, opacity: 0.08, blur: 2.5 },
-  { speed: 0.22, size: 13, opacity: 0.14, blur: 1 },
-  { speed: 0.34, size: 15, opacity: 0.22, blur: 0 },
+  { speed: 1.2, size: 11, opacity: 0.08, blur: 2.5 },
+  { speed: 2.2, size: 13, opacity: 0.14, blur: 1 },
+  { speed: 3.4, size: 15, opacity: 0.22, blur: 0 },
 ];
 
 @Component({
@@ -67,8 +67,11 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
   private resizeObserver: ResizeObserver | null = null;
   private visibilityObserver: IntersectionObserver | null = null;
   private isVisible = true;
+  private initialized = false;
   private width = 0;
   private height = 0;
+  private lastWidth = 0;
+  private lastHeight = 0;
   private dpr = 1;
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
@@ -80,10 +83,24 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
     this.ctx = canvas.getContext('2d');
     if (!this.ctx) return;
 
-    this.resize();
-    this.initParticles();
+    // ResizeObserver dispara con el tamaño real ya calculado por el navegador,
+    // a diferencia de leer clientWidth/clientHeight de forma síncrona aquí.
+        this.resizeObserver = new ResizeObserver(() => {
+      this.resize();
 
-    this.resizeObserver = new ResizeObserver(() => this.resize());
+      const sizeChanged = this.width !== this.lastWidth || this.height !== this.lastHeight;
+
+      if (this.width > 0 && this.height > 0 && sizeChanged) {
+        this.lastWidth = this.width;
+        this.lastHeight = this.height;
+        this.initParticles();
+
+        if (!this.initialized) {
+          this.initialized = true;
+          this.startAnimation();
+        }
+      }
+    });
     this.resizeObserver.observe(this.hostRef.nativeElement);
 
     this.visibilityObserver = new IntersectionObserver(
@@ -91,7 +108,9 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
       { threshold: 0 },
     );
     this.visibilityObserver.observe(this.hostRef.nativeElement);
+  }
 
+  private startAnimation(): void {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion) {
       this.drawStatic();
