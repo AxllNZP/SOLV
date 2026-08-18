@@ -1,8 +1,10 @@
 import { Component, signal, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { DigitalFlowComponent } from '../../shared/digital-flow/digital-flow';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
+  imports: [DigitalFlowComponent],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
 })
