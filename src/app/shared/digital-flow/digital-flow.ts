@@ -74,6 +74,7 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
   private lastHeight = 0;
   private dpr = 1;
   private scrollBoost = 0;
+  private isMobile = false;
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
@@ -135,9 +136,10 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
   private resize(): void {
     const canvas = this.canvasRef.nativeElement;
     const host = this.hostRef.nativeElement;
-    this.dpr = Math.min(window.devicePixelRatio || 1, 2);
     this.width = host.clientWidth;
     this.height = host.clientHeight;
+    this.isMobile = this.width < 640;
+    this.dpr = Math.min(window.devicePixelRatio || 1, this.isMobile ? 1.5 : 2);
     canvas.width = this.width * this.dpr;
     canvas.height = this.height * this.dpr;
     this.ctx?.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
@@ -146,8 +148,10 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
   private initParticles(): void {
     this.particles = [];
     const counts = DENSITY_MAP[this.density];
+    const scale = this.isMobile ? 0.6 : 1;
     counts.forEach((count, layer) => {
-      for (let i = 0; i < count; i++) {
+      const layerCount = Math.max(2, Math.round(count * scale));
+      for (let i = 0; i < layerCount; i++) {
         this.particles.push(this.makeParticle(LAYER_CONFIG[layer]));
       }
     });
@@ -169,7 +173,8 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
   private drawParticle(p: FlowParticle): void {
     if (!this.ctx) return;
     this.ctx.save();
-    this.ctx.filter = p.blur > 0 ? `blur(${p.blur}px)` : 'none';
+    const blur = this.isMobile ? 0 : p.blur;
+    this.ctx.filter = blur > 0 ? `blur(${blur}px)` : 'none';
     this.ctx.font = `${p.size}px 'JetBrains Mono', monospace`;
     this.ctx.fillStyle = `rgba(${p.color}, ${p.opacity})`;
     this.ctx.fillText(p.text, p.x, p.y);
