@@ -1,4 +1,4 @@
-import { Component, signal, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, signal, OnInit, OnDestroy, HostListener, ViewChild } from '@angular/core';
 import { DigitalFlowComponent } from '../../shared/digital-flow/digital-flow';
 
 @Component({
@@ -22,10 +22,17 @@ export class HeroComponent implements OnInit, OnDestroy {
   showScrollIndicator = signal(true);
   private typingInterval: ReturnType<typeof setInterval> | null = null;
   private phraseTimeout: ReturnType<typeof setTimeout> | null = null;
+  private lastScrollY = 0;
+
+  @ViewChild('digitalFlow') digitalFlow?: DigitalFlowComponent;
 
   @HostListener('window:scroll')
   onWindowScroll(): void {
     this.showScrollIndicator.set(window.scrollY < 100);
+
+    const delta = window.scrollY - this.lastScrollY;
+    this.lastScrollY = window.scrollY;
+    this.digitalFlow?.pulse(delta);
   }
 
   ngOnInit(): void {

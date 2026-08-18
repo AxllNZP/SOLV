@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
 
 interface Service {
   icon: string;
@@ -11,6 +12,7 @@ interface Service {
 @Component({
   selector: 'app-services',
   standalone: true,
+  imports: [ScrollRevealDirective],
   templateUrl: './services.html',
   styleUrl: './services.scss',
 })

@@ -1,4 +1,5 @@
-import { Component, signal, OnDestroy, OnInit } from '@angular/core';
+import { Component, signal, OnDestroy, OnInit, ElementRef, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 interface Testimonial {
   name: string;
@@ -16,9 +17,15 @@ interface Testimonial {
   styleUrl: './testimonials.scss',
 })
 export class TestimonialsComponent implements OnInit, OnDestroy {
+  @ViewChild('testimonialsSection') testimonialsSection!: ElementRef<HTMLElement>;
+
   currentIndex = signal(0);
   isPaused = signal(false);
   private autoplayInterval: ReturnType<typeof setInterval> | null = null;
+  private visibilityObserver: IntersectionObserver | null = null;
+  private isInViewport = true;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   testimonials: Testimonial[] = [
     {
@@ -65,15 +72,28 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.startAutoplay();
+    this.setupVisibilityObserver();
   }
 
   ngOnDestroy(): void {
     this.stopAutoplay();
+    this.visibilityObserver?.disconnect();
+  }
+
+  private setupVisibilityObserver(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    this.visibilityObserver = new IntersectionObserver(
+      (entries) => { this.isInViewport = entries[0]?.isIntersecting ?? true; },
+      { threshold: 0 },
+    );
+    if (this.testimonialsSection) {
+      this.visibilityObserver.observe(this.testimonialsSection.nativeElement);
+    }
   }
 
   startAutoplay(): void {
     this.autoplayInterval = setInterval(() => {
-      if (!this.isPaused()) {
+      if (!this.isPaused() && this.isInViewport) {
         this.next();
       }
     }, 5000);

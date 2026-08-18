@@ -6,7 +6,7 @@
       Click any card to explore the details.
     </p>
 
-    <div class="services__grid">
+    <div class="services__grid reveal" appScrollReveal>
       @for (service of services; track service.title; let i = $index) {
         <div
           class="services__card"

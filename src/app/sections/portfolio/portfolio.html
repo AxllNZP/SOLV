@@ -19,7 +19,7 @@
     </div>
 
     <!-- Project Grid -->
-    <div class="portfolio__grid">
+    <div class="portfolio__grid reveal" appScrollReveal>
       @for (project of filteredProjects; track project.title) {
         <div class="portfolio__card" (click)="openModal(project)">
           <div class="portfolio__card-image">

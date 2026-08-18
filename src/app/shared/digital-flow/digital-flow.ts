@@ -73,6 +73,7 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
   private lastWidth = 0;
   private lastHeight = 0;
   private dpr = 1;
+  private scrollBoost = 0;
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
@@ -123,6 +124,12 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
     if (this.rafId !== null) cancelAnimationFrame(this.rafId);
     this.resizeObserver?.disconnect();
     this.visibilityObserver?.disconnect();
+  }
+
+  /** Aumenta momentáneamente la velocidad del flow en respuesta a scroll. Decae solo. */
+  pulse(scrollDelta: number): void {
+    const magnitude = Math.min(Math.abs(scrollDelta) / 40, 1);
+    this.scrollBoost = Math.min(this.scrollBoost + magnitude * 0.8, 2);
   }
 
   private resize(): void {
@@ -177,9 +184,10 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
 
   private loop = (): void => {
     if (this.ctx && this.isVisible) {
+      const multiplier = 1 + this.scrollBoost;
       this.ctx.clearRect(0, 0, this.width, this.height);
       for (const p of this.particles) {
-        p.y -= p.speed;
+        p.y -= p.speed * multiplier;
         if (p.y < -20) {
           p.y = this.height + 20;
           p.x = Math.random() * this.width;
@@ -187,6 +195,8 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
         }
         this.drawParticle(p);
       }
+      this.scrollBoost *= 0.92;
+      if (this.scrollBoost < 0.01) this.scrollBoost = 0;
     }
     this.rafId = requestAnimationFrame(this.loop);
   };
