@@ -26,6 +26,11 @@
   &__content {
     position: relative;
     z-index: 1;
+    /* Fixed width so the flex item doesn't shrink-to-fit around the
+       animated title text — without this, the whole block (badge,
+       description, buttons, stats) recenters/shifts as the typed
+       word grows or shrinks. */
+    width: 100%;
     padding-top: 120px;
     padding-bottom: 60px;
 
