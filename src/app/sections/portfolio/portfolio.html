@@ -25,6 +25,7 @@
         <div class="portfolio__card" (click)="openModal(project)">
           <div class="portfolio__card-image">
             <div class="portfolio__card-placeholder">
+              <app-digital-flow class="portfolio__card-flow" density="low" [animate]="false" />
               <span>{{ project.category }}</span>
             </div>
             <div class="portfolio__card-overlay">

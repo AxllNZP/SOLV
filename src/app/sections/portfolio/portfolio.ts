@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
+import { DigitalFlowComponent } from '../../shared/digital-flow/digital-flow';
 
 interface Project {
   title: string;
@@ -14,7 +15,7 @@ interface Project {
 @Component({
   selector: 'app-portfolio',
   standalone: true,
-  imports: [ScrollRevealDirective],
+  imports: [ScrollRevealDirective, DigitalFlowComponent],
   templateUrl: './portfolio.html',
   styleUrl: './portfolio.scss',
 })

@@ -18,6 +18,7 @@ export class AboutComponent implements AfterViewInit, OnDestroy {
   @ViewChild('aboutSection') aboutSection!: ElementRef<HTMLElement>;
   private observer: IntersectionObserver | null = null;
   private animated = false;
+  private countersTimer: ReturnType<typeof setInterval> | null = null;
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
@@ -55,6 +56,7 @@ export class AboutComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.observer?.disconnect();
+    if (this.countersTimer) clearInterval(this.countersTimer);
   }
 
   private setupIntersectionObserver(): void {
@@ -82,7 +84,7 @@ export class AboutComponent implements AfterViewInit, OnDestroy {
     const interval = duration / steps;
 
     let step = 0;
-    const timer = setInterval(() => {
+    this.countersTimer = setInterval(() => {
       step++;
       const progress = step / steps;
       const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
@@ -92,7 +94,8 @@ export class AboutComponent implements AfterViewInit, OnDestroy {
       });
 
       if (step >= steps) {
-        clearInterval(timer);
+        if (this.countersTimer) clearInterval(this.countersTimer);
+        this.countersTimer = null;
         this.counters.forEach(counter => {
           counter.current = counter.target;
         });

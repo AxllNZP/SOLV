@@ -77,20 +77,29 @@
   }
 
   &__card-placeholder {
+    position: relative;
     width: 100%;
     height: 100%;
     background: var(--gradient-card);
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 
     span {
+      position: relative;
+      z-index: 1;
       font-family: var(--font-heading);
       font-size: var(--fs-lg);
       font-weight: 600;
       color: var(--color-primary-light);
       opacity: 0.6;
     }
+  }
+
+  &__card-flow {
+    position: absolute;
+    inset: 0;
   }
 
   &__card-overlay {

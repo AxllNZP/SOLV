@@ -8,7 +8,6 @@ import { TechStackComponent } from './sections/tech-stack/tech-stack';
 import { TestimonialsComponent } from './sections/testimonials/testimonials';
 import { ContactComponent } from './sections/contact/contact';
 import { FooterComponent } from './shared/footer/footer';
-import { DigitalFlowComponent } from "./shared/digital-flow/digital-flow";
 
 @Component({
   selector: 'app-root',
@@ -22,8 +21,7 @@ import { DigitalFlowComponent } from "./shared/digital-flow/digital-flow";
     TechStackComponent,
     TestimonialsComponent,
     ContactComponent,
-    FooterComponent,
-    DigitalFlowComponent
+    FooterComponent
 ],
   templateUrl: './app.html',
   styleUrl: './app.scss',

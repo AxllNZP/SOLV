@@ -60,6 +60,7 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
 
   @Input() density: 'low' | 'medium' | 'high' = 'low';
   @Input() speed = 1;
+  @Input() animate = true;
 
   private ctx: CanvasRenderingContext2D | null = null;
   private particles: FlowParticle[] = [];
@@ -114,7 +115,7 @@ export class DigitalFlowComponent implements AfterViewInit, OnDestroy {
 
   private startAnimation(): void {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reducedMotion) {
+    if (reducedMotion || !this.animate) {
       this.drawStatic();
     } else {
       this.loop();
