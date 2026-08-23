@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
+import { TranslatePipe } from '../../core/i18n/translate.pipe';
 
 interface TechItem {
   name: string;
@@ -8,21 +9,21 @@ interface TechItem {
 }
 
 interface TechGroup {
-  category: string;
+  categoryKey: string;
   items: TechItem[];
 }
 
 @Component({
   selector: 'app-tech-stack',
   standalone: true,
-  imports: [ScrollRevealDirective],
+  imports: [ScrollRevealDirective, TranslatePipe],
   templateUrl: './tech-stack.html',
   styleUrl: './tech-stack.scss',
 })
 export class TechStackComponent {
   groups: TechGroup[] = [
     {
-      category: 'Frontend',
+      categoryKey: 'techStack.category.frontend',
       items: [
         { name: 'Angular', letter: 'A', color: '#dd0031' },
         { name: 'React', letter: 'R', color: '#61dafb' },
@@ -33,7 +34,7 @@ export class TechStackComponent {
       ]
     },
     {
-      category: 'Backend',
+      categoryKey: 'techStack.category.backend',
       items: [
         { name: 'Node.js', letter: 'N', color: '#68a063' },
         { name: 'Python', letter: 'Py', color: '#3776ab' },
@@ -44,7 +45,7 @@ export class TechStackComponent {
       ]
     },
     {
-      category: 'Database',
+      categoryKey: 'techStack.category.database',
       items: [
         { name: 'PostgreSQL', letter: 'Pg', color: '#336791' },
         { name: 'MongoDB', letter: 'M', color: '#47a248' },
@@ -54,7 +55,7 @@ export class TechStackComponent {
       ]
     },
     {
-      category: 'DevOps',
+      categoryKey: 'techStack.category.devops',
       items: [
         { name: 'AWS', letter: 'AW', color: '#ff9900' },
         { name: 'Docker', letter: 'Dk', color: '#2496ed' },

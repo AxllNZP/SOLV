@@ -1,11 +1,11 @@
 import { Component, signal, OnDestroy, OnInit, ElementRef, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { TranslatePipe } from '../../core/i18n/translate.pipe';
 
 interface Testimonial {
+  key: string;
   name: string;
-  role: string;
   company: string;
-  quote: string;
   avatar: string;
   rating: number;
 }
@@ -13,6 +13,7 @@ interface Testimonial {
 @Component({
   selector: 'app-testimonials',
   standalone: true,
+  imports: [TranslatePipe],
   templateUrl: './testimonials.html',
   styleUrl: './testimonials.scss',
 })
@@ -28,46 +29,11 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   testimonials: Testimonial[] = [
-    {
-      name: 'Sarah Chen',
-      role: 'CTO',
-      company: 'Finova Capital',
-      quote: 'Solv transformed our legacy banking platform into a modern microservices architecture. Their team delivered 3 weeks ahead of schedule and the performance improvements were staggering.',
-      avatar: 'SC',
-      rating: 5
-    },
-    {
-      name: 'Marcus Rodriguez',
-      role: 'Founder & CEO',
-      company: 'MediConnect',
-      quote: 'Working with Solv was a game-changer. They built our telemedicine platform from scratch, and it now serves over 100,000 patients monthly. Exceptional quality and communication.',
-      avatar: 'MR',
-      rating: 5
-    },
-    {
-      name: 'Emily Watson',
-      role: 'VP of Engineering',
-      company: 'RetailPro',
-      quote: 'The e-commerce solution Solv delivered handles our Black Friday traffic without breaking a sweat. Their scalable architecture saved us from hiring an entire DevOps team.',
-      avatar: 'EW',
-      rating: 5
-    },
-    {
-      name: 'David Kim',
-      role: 'Product Director',
-      company: 'EduSphere',
-      quote: 'Solv didn\'t just build an app — they understood our vision for accessible education. The platform they created increased student engagement by 400% in the first quarter.',
-      avatar: 'DK',
-      rating: 5
-    },
-    {
-      name: 'Lisa Andersen',
-      role: 'CTO',
-      company: 'LogiTrack',
-      quote: 'From IoT integration to real-time dashboards, Solv handled our complex logistics requirements with expertise. They\'re now our go-to technology partner.',
-      avatar: 'LA',
-      rating: 5
-    }
+    { key: 'sarah', name: 'Sarah Chen', company: 'Finova Capital', avatar: 'SC', rating: 5 },
+    { key: 'marcus', name: 'Marcus Rodriguez', company: 'MediConnect', avatar: 'MR', rating: 5 },
+    { key: 'emily', name: 'Emily Watson', company: 'RetailPro', avatar: 'EW', rating: 5 },
+    { key: 'david', name: 'David Kim', company: 'EduSphere', avatar: 'DK', rating: 5 },
+    { key: 'lisa', name: 'Lisa Andersen', company: 'LogiTrack', avatar: 'LA', rating: 5 },
   ];
 
   ngOnInit(): void {

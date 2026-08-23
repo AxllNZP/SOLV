@@ -8,23 +8,22 @@
   <div class="hero__content container">
     <div class="hero__badge">
       <span class="hero__badge-dot"></span>
-      Trusted by 50+ companies worldwide
+      {{ 'hero.badge' | translate }}
     </div>
 
     <h1 class="hero__title">
-      We Build<br />
+      {{ 'hero.titleLine1' | translate }}<br />
       <span class="hero__title-gradient">{{ displayedText() }}</span>
       <span class="hero__cursor" [class.blink]="!isDeleting()">|</span>
     </h1>
 
     <p class="hero__description">
-      Solv is a software development company that crafts modern web applications,
-      mobile experiences, and cloud infrastructure for forward-thinking businesses.
+      {{ 'hero.description' | translate }}
     </p>
 
     <div class="hero__actions">
       <button class="hero__btn hero__btn--primary" (click)="scrollToContact()">
-        <span>Start a Project</span>
+        <span>{{ 'hero.ctaPrimary' | translate }}</span>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
@@ -33,22 +32,22 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polygon points="5 3 19 12 5 21 5 3"/>
         </svg>
-        <span>View Our Work</span>
+        <span>{{ 'hero.ctaSecondary' | translate }}</span>
       </button>
     </div>
 
     <div class="hero__stats">
       <div class="hero__stat">
         <span class="hero__stat-number">150+</span>
-        <span class="hero__stat-label">Projects Delivered</span>
+        <span class="hero__stat-label">{{ 'hero.stat.projectsLabel' | translate }}</span>
       </div>
       <div class="hero__stat">
         <span class="hero__stat-number">98%</span>
-        <span class="hero__stat-label">Client Satisfaction</span>
+        <span class="hero__stat-label">{{ 'hero.stat.satisfactionLabel' | translate }}</span>
       </div>
       <div class="hero__stat">
         <span class="hero__stat-number">12+</span>
-        <span class="hero__stat-label">Years Experience</span>
+        <span class="hero__stat-label">{{ 'hero.stat.experienceLabel' | translate }}</span>
       </div>
     </div>
   </div>
@@ -58,6 +57,6 @@
     <div class="hero__scroll-mouse">
       <div class="hero__scroll-wheel"></div>
     </div>
-    <span>Scroll Down</span>
+    <span>{{ 'hero.scrollDown' | translate }}</span>
   </div>
 </section>

@@ -1,13 +1,12 @@
 <section id="services" class="services section">
   <div class="container">
-    <h2 class="section-title">Our <span>Services</span></h2>
+    <h2 class="section-title">{{ 'services.titlePrefix' | translate }} <span>{{ 'services.titleHighlight' | translate }}</span></h2>
     <p class="section-subtitle">
-      We deliver end-to-end technology solutions tailored to your business needs.
-      Click any card to explore the details.
+      {{ 'services.subtitle' | translate }}
     </p>
 
     <div class="services__grid reveal" appScrollReveal>
-      @for (service of services; track service.title; let i = $index) {
+      @for (service of services; track service.key; let i = $index) {
         <div
           class="services__card"
           [class.flipped]="flippedCard() === i"
@@ -17,23 +16,23 @@
           <!-- Front -->
           <div class="services__card-front">
             <div class="services__card-icon">{{ service.icon }}</div>
-            <h3 class="services__card-title">{{ service.title }}</h3>
-            <p class="services__card-desc">{{ service.description }}</p>
-            <span class="services__card-flip-hint">Click to explore →</span>
+            <h3 class="services__card-title">{{ ('services.items.' + service.key + '.title') | translate }}</h3>
+            <p class="services__card-desc">{{ ('services.items.' + service.key + '.description') | translate }}</p>
+            <span class="services__card-flip-hint">{{ 'services.flipHint' | translate }}</span>
           </div>
 
           <!-- Back -->
           <div class="services__card-back">
-            <h3 class="services__card-title">{{ service.title }}</h3>
+            <h3 class="services__card-title">{{ ('services.items.' + service.key + '.title') | translate }}</h3>
             <ul class="services__card-details">
-              @for (detail of service.details; track detail) {
+              @for (detailIndex of detailIndexes(service.detailCount); track detailIndex) {
                 <li>
                   <span class="services__card-check">✓</span>
-                  {{ detail }}
+                  {{ ('services.items.' + service.key + '.detail' + detailIndex) | translate }}
                 </li>
               }
             </ul>
-            <span class="services__card-flip-hint">← Click to flip back</span>
+            <span class="services__card-flip-hint">{{ 'services.flipBackHint' | translate }}</span>
           </div>
         </div>
       }

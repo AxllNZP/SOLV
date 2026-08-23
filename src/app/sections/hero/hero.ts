@@ -1,19 +1,27 @@
-import { Component, signal, OnInit, OnDestroy, HostListener, ViewChild } from '@angular/core';
+import { Component, signal, OnInit, OnDestroy, HostListener, ViewChild, effect, inject } from '@angular/core';
 import { DigitalFlowComponent } from '../../shared/digital-flow/digital-flow';
+import { TranslatePipe } from '../../core/i18n/translate.pipe';
+import { TranslationService } from '../../core/i18n/translation.service';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [DigitalFlowComponent],
+  imports: [DigitalFlowComponent, TranslatePipe],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
 })
 export class HeroComponent implements OnInit, OnDestroy {
-  phrases = [
-    'Digital Experiences',
-    'Scalable Solutions',
-    'Cloud-Native Apps'
+  private i18n = inject(TranslationService);
+
+  private phraseKeys = [
+    'hero.phrase.digitalExperiences',
+    'hero.phrase.scalableSolutions',
+    'hero.phrase.cloudNativeApps',
   ];
+
+  private get phrases(): string[] {
+    return this.phraseKeys.map(key => this.i18n.t(key));
+  }
 
   currentPhraseIndex = signal(0);
   currentPhrase = signal(this.phrases[0]);
@@ -23,6 +31,18 @@ export class HeroComponent implements OnInit, OnDestroy {
   private typingInterval: ReturnType<typeof setInterval> | null = null;
   private phraseTimeout: ReturnType<typeof setTimeout> | null = null;
   private lastScrollY = 0;
+  private isFirstLangRun = true;
+
+  // Restart the typing animation with the new language's phrases whenever
+  // the user switches language (skips the very first run — ngOnInit starts it).
+  private langEffect = effect(() => {
+    this.i18n.lang();
+    if (this.isFirstLangRun) {
+      this.isFirstLangRun = false;
+      return;
+    }
+    this.restartTyping();
+  });
 
   @ViewChild('digitalFlow') digitalFlow?: DigitalFlowComponent;
 
@@ -95,6 +115,14 @@ export class HeroComponent implements OnInit, OnDestroy {
   private cleanup(): void {
     if (this.typingInterval) clearInterval(this.typingInterval);
     if (this.phraseTimeout) clearTimeout(this.phraseTimeout);
+  }
+
+  private restartTyping(): void {
+    this.cleanup();
+    this.displayedText.set('');
+    this.isDeleting.set(false);
+    this.currentPhraseIndex.set(0);
+    this.startTyping();
   }
 
   scrollToContact(): void {

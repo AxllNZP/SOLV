@@ -1,12 +1,12 @@
 <section id="tech-stack" class="tech-stack section">
   <div class="container">
-    <h2 class="section-title">Tech <span>Stack</span></h2>
+    <h2 class="section-title">{{ 'techStack.titlePrefix' | translate }} <span>{{ 'techStack.titleHighlight' | translate }}</span></h2>
     <p class="section-subtitle">
-      Technologies we master and leverage to build world-class products.
+      {{ 'techStack.subtitle' | translate }}
     </p>
 
     <div class="tech-stack__grid">
-      @for (group of groups; track group.category; let groupIndex = $index) {
+      @for (group of groups; track group.categoryKey; let groupIndex = $index) {
         <div
           class="tech-stack__group"
           appScrollReveal
@@ -14,7 +14,7 @@
         >
           <h3 class="tech-stack__group-title">
             <span class="tech-stack__group-dot"></span>
-            {{ group.category }}
+            {{ group.categoryKey | translate }}
           </h3>
 
           <div class="tech-stack__items">

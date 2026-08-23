@@ -9,7 +9,7 @@
           <span class="footer__logo-text">Solv</span>
         </a>
         <p class="footer__brand-desc">
-          Crafting digital experiences and scalable solutions for forward-thinking businesses.
+          {{ 'footer.brandDesc' | translate }}
         </p>
         <div class="footer__socials">
           @for (social of socialLinks; track social.name) {
@@ -28,11 +28,11 @@
 
       <!-- Quick Links -->
       <div class="footer__links-col">
-        <h4 class="footer__links-title">Quick Links</h4>
+        <h4 class="footer__links-title">{{ 'footer.quickLinksTitle' | translate }}</h4>
         <ul class="footer__links">
           @for (link of quickLinks; track link.href) {
             <li>
-              <a class="footer__link" (click)="scrollTo(link.href)">{{ link.label }}</a>
+              <a class="footer__link" (click)="scrollTo(link.href)">{{ link.key | translate }}</a>
             </li>
           }
         </ul>
@@ -40,11 +40,11 @@
 
       <!-- Services -->
       <div class="footer__links-col">
-        <h4 class="footer__links-title">Services</h4>
+        <h4 class="footer__links-title">{{ 'nav.services' | translate }}</h4>
         <ul class="footer__links">
-          @for (service of serviceLinks; track service) {
+          @for (serviceKey of serviceLinks; track serviceKey) {
             <li>
-              <a class="footer__link" (click)="scrollTo('#services')">{{ service }}</a>
+              <a class="footer__link" (click)="scrollTo('#services')">{{ serviceKey | translate }}</a>
             </li>
           }
         </ul>
@@ -52,7 +52,7 @@
 
       <!-- Contact -->
       <div class="footer__links-col">
-        <h4 class="footer__links-title">Contact</h4>
+        <h4 class="footer__links-title">{{ 'nav.contact' | translate }}</h4>
         <ul class="footer__links">
           <li>
             <span class="footer__link">hello&#64;solv.dev</span>
@@ -73,11 +73,11 @@
     <!-- Bottom Section -->
     <div class="footer__bottom">
       <p class="footer__copyright">
-        &copy; {{ currentYear }} Solv. All rights reserved.
+        &copy; {{ currentYear }} Solv. {{ 'footer.copyrightSuffix' | translate }}
       </p>
       <div class="footer__bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
+        <a href="#">{{ 'footer.privacyPolicy' | translate }}</a>
+        <a href="#">{{ 'footer.termsOfService' | translate }}</a>
       </div>
     </div>
   </div>

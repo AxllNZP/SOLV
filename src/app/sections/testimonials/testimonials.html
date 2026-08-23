@@ -1,8 +1,8 @@
 <section id="testimonials" class="testimonials section" #testimonialsSection>
   <div class="container">
-    <h2 class="section-title">Client <span>Testimonials</span></h2>
+    <h2 class="section-title">{{ 'testimonials.titlePrefix' | translate }} <span>{{ 'testimonials.titleHighlight' | translate }}</span></h2>
     <p class="section-subtitle">
-      Hear from the businesses we've helped transform through technology.
+      {{ 'testimonials.subtitle' | translate }}
     </p>
 
     <div
@@ -12,12 +12,12 @@
     >
       <!-- Flexbox wrapper: buttons + cards -->
       <div class="testimonials__wrapper">
-        <button class="testimonials__btn testimonials__btn--prev" (click)="prev()" aria-label="Previous testimonial">
+        <button class="testimonials__btn testimonials__btn--prev" (click)="prev()" [attr.aria-label]="'testimonials.prev' | translate">
           ‹
         </button>
 
         <div class="testimonials__track">
-          @for (testimonial of testimonials; track testimonial.name; let i = $index) {
+          @for (testimonial of testimonials; track testimonial.key; let i = $index) {
             <div
               class="testimonials__slide"
               [class.active]="currentIndex() === i"
@@ -28,12 +28,12 @@
                     <span class="testimonials__star" [class.filled]="star <= testimonial.rating">★</span>
                   }
                 </div>
-                <p class="testimonials__quote">"{{ testimonial.quote }}"</p>
+                <p class="testimonials__quote">"{{ ('testimonials.items.' + testimonial.key + '.quote') | translate }}"</p>
                 <div class="testimonials__author">
                   <div class="testimonials__avatar">{{ testimonial.avatar }}</div>
                   <div class="testimonials__author-info">
                     <span class="testimonials__name">{{ testimonial.name }}</span>
-                    <span class="testimonials__role">{{ testimonial.role }}, {{ testimonial.company }}</span>
+                    <span class="testimonials__role">{{ ('testimonials.items.' + testimonial.key + '.role') | translate }}, {{ testimonial.company }}</span>
                   </div>
                 </div>
               </div>
@@ -41,7 +41,7 @@
           }
         </div>
 
-        <button class="testimonials__btn testimonials__btn--next" (click)="next()" aria-label="Next testimonial">
+        <button class="testimonials__btn testimonials__btn--next" (click)="next()" [attr.aria-label]="'testimonials.next' | translate">
           ›
         </button>
       </div>
@@ -49,12 +49,12 @@
 
     <!-- Dots -->
     <div class="testimonials__dots">
-      @for (testimonial of testimonials; track testimonial.name; let i = $index) {
+      @for (testimonial of testimonials; track testimonial.key; let i = $index) {
         <button
           class="testimonials__dot"
           [class.active]="currentIndex() === i"
           (click)="goTo(i)"
-          [attr.aria-label]="'Go to testimonial ' + (i + 1)"
+          [attr.aria-label]="(('testimonials.goTo' | translate) + ' ' + (i + 1))"
         ></button>
       }
     </div>

@@ -1,37 +1,37 @@
 <section id="contact" class="contact section" #contactForm>
   <div class="container">
-    <h2 class="section-title">Get In <span>Touch</span></h2>
+    <h2 class="section-title">{{ 'contact.titlePrefix' | translate }} <span>{{ 'contact.titleHighlight' | translate }}</span></h2>
     <p class="section-subtitle">
-      Have a project in mind? Let's discuss how Solv can bring your vision to life.
+      {{ 'contact.subtitle' | translate }}
     </p>
 
     <div class="contact__wrapper" [class.visible]="isVisible()">
       <!-- Contact Info -->
       <div class="contact__info">
-        <h3 class="contact__info-title">Let's start a conversation</h3>
+        <h3 class="contact__info-title">{{ 'contact.infoTitle' | translate }}</h3>
         <p class="contact__info-desc">
-          Fill out the form and our team will get back to you within 24 hours.
+          {{ 'contact.infoDesc' | translate }}
         </p>
 
         <div class="contact__details">
           <div class="contact__detail">
             <span class="contact__detail-icon">📧</span>
             <div>
-              <span class="contact__detail-label">Email Us</span>
+              <span class="contact__detail-label">{{ 'contact.detail.emailLabel' | translate }}</span>
               <span class="contact__detail-value">hello&#64;solv.dev</span>
             </div>
           </div>
           <div class="contact__detail">
             <span class="contact__detail-icon">📍</span>
             <div>
-              <span class="contact__detail-label">Visit Us</span>
+              <span class="contact__detail-label">{{ 'contact.detail.addressLabel' | translate }}</span>
               <span class="contact__detail-value">San Francisco, CA</span>
             </div>
           </div>
           <div class="contact__detail">
             <span class="contact__detail-icon">📞</span>
             <div>
-              <span class="contact__detail-label">Call Us</span>
+              <span class="contact__detail-label">{{ 'contact.detail.phoneLabel' | translate }}</span>
               <span class="contact__detail-value">+1 (555) 123-4567</span>
             </div>
           </div>
@@ -48,17 +48,17 @@
                 <polyline points="22 4 12 14.01 9 11.01"/>
               </svg>
             </div>
-            <h3>Message Sent!</h3>
-            <p>Thank you for reaching out. We'll get back to you soon.</p>
+            <h3>{{ 'contact.success.title' | translate }}</h3>
+            <p>{{ 'contact.success.desc' | translate }}</p>
           </div>
         } @else {
           <div class="contact__form-group">
-            <label class="contact__label" for="name">Full Name *</label>
+            <label class="contact__label" for="name">{{ 'contact.label.name' | translate }}</label>
             <input
               class="contact__input"
               type="text"
               id="name"
-              placeholder="John Doe"
+              [placeholder]="'contact.placeholder.name' | translate"
               [(ngModel)]="formData.name"
               name="name"
               required
@@ -67,7 +67,7 @@
 
           <div class="contact__form-row">
             <div class="contact__form-group">
-              <label class="contact__label" for="email">Email Address *</label>
+              <label class="contact__label" for="email">{{ 'contact.label.email' | translate }}</label>
               <input
                 class="contact__input"
                 type="email"
@@ -79,12 +79,12 @@
               />
             </div>
             <div class="contact__form-group">
-              <label class="contact__label" for="company">Company</label>
+              <label class="contact__label" for="company">{{ 'contact.label.company' | translate }}</label>
               <input
                 class="contact__input"
                 type="text"
                 id="company"
-                placeholder="Your Company"
+                [placeholder]="'contact.placeholder.company' | translate"
                 [(ngModel)]="formData.company"
                 name="company"
               />
@@ -93,7 +93,7 @@
 
           <div class="contact__form-row">
             <div class="contact__form-group">
-              <label class="contact__label" for="projectType">Project Type *</label>
+              <label class="contact__label" for="projectType">{{ 'contact.label.projectType' | translate }}</label>
               <select
                 class="contact__select"
                 id="projectType"
@@ -101,21 +101,21 @@
                 name="projectType"
                 required
               >
-                <option value="" disabled>Select project type</option>
-                @for (type of projectTypes; track type) {
-                  <option [value]="type">{{ type }}</option>
+                <option value="" disabled>{{ 'contact.select.projectTypePlaceholder' | translate }}</option>
+                @for (typeKey of projectTypeKeys; track typeKey) {
+                  <option [value]="typeKey">{{ ('contact.projectType.' + typeKey) | translate }}</option>
                 }
               </select>
             </div>
             <div class="contact__form-group">
-              <label class="contact__label" for="budget">Budget Range</label>
+              <label class="contact__label" for="budget">{{ 'contact.label.budget' | translate }}</label>
               <select
                 class="contact__select"
                 id="budget"
                 [(ngModel)]="formData.budget"
                 name="budget"
               >
-                <option value="" disabled>Select budget range</option>
+                <option value="" disabled>{{ 'contact.select.budgetPlaceholder' | translate }}</option>
                 <option value="10k-25k">$10k - $25k</option>
                 <option value="25k-50k">$25k - $50k</option>
                 <option value="50k-100k">$50k - $100k</option>
@@ -125,12 +125,12 @@
           </div>
 
           <div class="contact__form-group">
-            <label class="contact__label" for="message">Project Details *</label>
+            <label class="contact__label" for="message">{{ 'contact.label.message' | translate }}</label>
             <textarea
               class="contact__textarea"
               id="message"
               rows="5"
-              placeholder="Tell us about your project, goals, and timeline..."
+              [placeholder]="'contact.placeholder.message' | translate"
               [(ngModel)]="formData.message"
               name="message"
               required
@@ -144,9 +144,9 @@
           >
             @if (isSubmitting()) {
               <span class="contact__spinner"></span>
-              <span>Sending...</span>
+              <span>{{ 'contact.submitting' | translate }}</span>
             } @else {
-              <span>Send Message</span>
+              <span>{{ 'contact.submit' | translate }}</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="22" y1="2" x2="11" y2="13"/>
                 <polygon points="22 2 15 22 11 13 2 9 22 2"/>

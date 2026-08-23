@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { TranslatePipe } from '../../core/i18n/translate.pipe';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
+  imports: [TranslatePipe],
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
 })
@@ -11,19 +13,19 @@ export class FooterComponent {
   currentYear = new Date().getFullYear();
 
   quickLinks = [
-    { label: 'Home', href: '#hero' },
-    { label: 'Services', href: '#services' },
-    { label: 'Portfolio', href: '#portfolio' },
-    { label: 'About', href: '#about' },
-    { label: 'Contact', href: '#contact' },
+    { key: 'nav.home', href: '#hero' },
+    { key: 'nav.services', href: '#services' },
+    { key: 'nav.portfolio', href: '#portfolio' },
+    { key: 'nav.about', href: '#about' },
+    { key: 'nav.contact', href: '#contact' },
   ];
 
   serviceLinks = [
-    'Web Development',
-    'Mobile Apps',
-    'Cloud Solutions',
-    'AI & Machine Learning',
-    'Cybersecurity',
+    'services.items.webDev.title',
+    'services.items.mobileApps.title',
+    'services.items.cloudSolutions.title',
+    'services.items.aiMl.title',
+    'services.items.cybersecurity.title',
   ];
 
   socialLinks = [

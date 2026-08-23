@@ -1,8 +1,9 @@
 import { Component, signal, ElementRef, ViewChild, AfterViewInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { TranslatePipe } from '../../core/i18n/translate.pipe';
 
 interface Counter {
-  label: string;
+  key: string;
   target: number;
   suffix: string;
   current: number;
@@ -11,6 +12,7 @@ interface Counter {
 @Component({
   selector: 'app-about',
   standalone: true,
+  imports: [TranslatePipe],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
@@ -22,15 +24,15 @@ export class AboutComponent implements AfterViewInit, OnDestroy {
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   counters: Counter[] = [
-    { label: 'Projects Completed', target: 150, suffix: '+', current: 0 },
-    { label: 'Happy Clients', target: 80, suffix: '+', current: 0 },
-    { label: 'Team Members', target: 35, suffix: '+', current: 0 },
-    { label: 'Years of Experience', target: 12, suffix: '+', current: 0 },
+    { key: 'about.counter.projects', target: 150, suffix: '+', current: 0 },
+    { key: 'about.counter.clients', target: 80, suffix: '+', current: 0 },
+    { key: 'about.counter.team', target: 35, suffix: '+', current: 0 },
+    { key: 'about.counter.experience', target: 12, suffix: '+', current: 0 },
   ];
 
   techCategories = [
     {
-      name: 'Frontend',
+      key: 'techStack.category.frontend',
       icons: [
         { name: 'Angular', letter: 'A', color: '#dd0031' },
         { name: 'React', letter: 'R', color: '#61dafb' },
@@ -39,7 +41,7 @@ export class AboutComponent implements AfterViewInit, OnDestroy {
       ]
     },
     {
-      name: 'Backend',
+      key: 'techStack.category.backend',
       icons: [
         { name: 'Node.js', letter: 'N', color: '#68a063' },
         { name: 'Python', letter: 'Py', color: '#3776ab' },

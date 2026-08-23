@@ -111,6 +111,59 @@
     }
   }
 
+  /* Language Toggle */
+  &__lang-toggle {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 3px;
+    cursor: pointer;
+
+    span {
+      padding: 4px 10px;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      color: var(--color-text-muted);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition-fast);
+
+      &.active {
+        background: var(--gradient-primary);
+        color: white;
+      }
+    }
+
+    @media (max-width: 968px) {
+      display: none;
+    }
+  }
+
+  &__mobile-lang-toggle {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 4px;
+    cursor: pointer;
+
+    span {
+      padding: 6px 16px;
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      color: var(--color-text-muted);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition-fast);
+
+      &.active {
+        background: var(--gradient-primary);
+        color: white;
+      }
+    }
+  }
+
   /* Hamburger Button */
   &__burger {
     display: none;

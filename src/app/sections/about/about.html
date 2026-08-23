@@ -1,23 +1,19 @@
 <section id="about" class="about section" #aboutSection>
   <div class="container">
-    <h2 class="section-title">About <span>Solv</span></h2>
+    <h2 class="section-title">{{ 'about.titlePrefix' | translate }} <span>Solv</span></h2>
     <p class="section-subtitle">
-      We're a team of passionate developers, designers, and strategists building the future of digital.
+      {{ 'about.subtitle' | translate }}
     </p>
 
     <!-- Story Section -->
     <div class="about__story">
       <div class="about__story-content">
-        <h3 class="about__story-title">Our Story</h3>
+        <h3 class="about__story-title">{{ 'about.storyTitle' | translate }}</h3>
         <p>
-          Founded in 2012, Solv started as a small team of three developers with a big dream:
-          to make enterprise-grade software accessible to businesses of all sizes. Over the past
-          decade, we've grown into a 35+ person team delivering innovative solutions across
-          healthcare, fintech, e-commerce, and education.
+          {{ 'about.storyP1' | translate }}
         </p>
         <p>
-          Our philosophy is simple — we don't just write code. We build long-term partnerships,
-          understand your business deeply, and craft solutions that scale with your ambitions.
+          {{ 'about.storyP2' | translate }}
         </p>
       </div>
       <div class="about__story-visual">
@@ -28,25 +24,25 @@
           <div class="about__avatar" style="background: linear-gradient(135deg, #a29bfe, #6c5ce7);">JD</div>
           <div class="about__avatar about__avatar--more">+31</div>
         </div>
-        <p class="about__team-caption">Our growing team</p>
+        <p class="about__team-caption">{{ 'about.teamCaption' | translate }}</p>
       </div>
     </div>
 
     <!-- Counters -->
     <div class="about__counters">
-      @for (counter of counters; track counter.label) {
+      @for (counter of counters; track counter.key) {
         <div class="about__counter">
           <span class="about__counter-number">{{ counter.current }}{{ counter.suffix }}</span>
-          <span class="about__counter-label">{{ counter.label }}</span>
+          <span class="about__counter-label">{{ counter.key | translate }}</span>
         </div>
       }
     </div>
 
     <!-- Tech Categories Preview -->
     <div class="about__tech-preview">
-      @for (category of techCategories; track category.name) {
+      @for (category of techCategories; track category.key) {
         <div class="about__tech-group">
-          <h4 class="about__tech-group-title">{{ category.name }}</h4>
+          <h4 class="about__tech-group-title">{{ category.key | translate }}</h4>
           <div class="about__tech-icons">
             @for (icon of category.icons; track icon.name) {
               <div class="about__tech-icon" [style.--icon-color]="icon.color">

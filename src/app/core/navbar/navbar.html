@@ -10,20 +10,30 @@
     <ul class="navbar__links">
       @for (link of navLinks; track link.href) {
         <li>
-          <a class="navbar__link" (click)="scrollTo(link.href)">{{ link.label }}</a>
+          <a class="navbar__link" (click)="scrollTo(link.href)">{{ link.key | translate }}</a>
         </li>
       }
     </ul>
 
+    <!-- Language Toggle -->
+    <button
+      class="navbar__lang-toggle"
+      (click)="i18n.toggleLang()"
+      [attr.aria-label]="(i18n.lang() === 'en' ? 'common.langToggleToSpanish' : 'common.langToggleToEnglish') | translate"
+    >
+      <span [class.active]="i18n.lang() === 'en'">EN</span>
+      <span [class.active]="i18n.lang() === 'es'">ES</span>
+    </button>
+
     <!-- CTA Button -->
-    <a class="navbar__cta" (click)="scrollTo('#contact')">Let's Talk</a>
+    <a class="navbar__cta" (click)="scrollTo('#contact')">{{ 'nav.cta' | translate }}</a>
 
     <!-- Mobile Burger -->
     <button
       class="navbar__burger"
       [class.active]="isMobileMenuOpen()"
       (click)="toggleMobileMenu()"
-      aria-label="Toggle menu"
+      [attr.aria-label]="'nav.toggleMenu' | translate"
     >
       <span></span>
       <span></span>
@@ -36,11 +46,17 @@
     <ul class="navbar__mobile-links">
       @for (link of navLinks; track link.href) {
         <li>
-          <a class="navbar__mobile-link" (click)="scrollTo(link.href)">{{ link.label }}</a>
+          <a class="navbar__mobile-link" (click)="scrollTo(link.href)">{{ link.key | translate }}</a>
         </li>
       }
       <li>
-        <a class="navbar__mobile-cta" (click)="scrollTo('#contact')">Let's Talk</a>
+        <button class="navbar__mobile-lang-toggle" (click)="i18n.toggleLang()">
+          <span [class.active]="i18n.lang() === 'en'">EN</span>
+          <span [class.active]="i18n.lang() === 'es'">ES</span>
+        </button>
+      </li>
+      <li>
+        <a class="navbar__mobile-cta" (click)="scrollTo('#contact')">{{ 'nav.cta' | translate }}</a>
       </li>
     </ul>
   </div>

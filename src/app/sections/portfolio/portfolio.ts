@@ -1,24 +1,27 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
+import { TranslatePipe } from '../../core/i18n/translate.pipe';
+import { TranslationService } from '../../core/i18n/translation.service';
 
 interface Project {
-  title: string;
-  description: string;
+  key: string;
   image: string;
   tags: string[];
   liveUrl: string;
-  category: string;
-  features: string[];
+  categoryKey: string;
+  featureCount: number;
 }
 
 @Component({
   selector: 'app-portfolio',
   standalone: true,
-  imports: [ScrollRevealDirective],
+  imports: [ScrollRevealDirective, TranslatePipe],
   templateUrl: './portfolio.html',
   styleUrl: './portfolio.scss',
 })
 export class PortfolioComponent {
+  private i18n = inject(TranslationService);
+
   selectedTag = signal('All');
   selectedProject = signal<Project | null>(null);
 
@@ -26,58 +29,52 @@ export class PortfolioComponent {
 
   projects: Project[] = [
     {
-      title: 'FinTrack Pro',
-      description: 'Real-time financial dashboard with live stock tracking and portfolio analytics.',
+      key: 'fintrack',
       image: '',
       tags: ['React', 'Node.js', 'AWS'],
       liveUrl: '#',
-      category: 'Web App',
-      features: ['Real-time data streaming', 'Interactive charts', 'Portfolio optimization', 'Mobile responsive']
+      categoryKey: 'webApp',
+      featureCount: 4
     },
     {
-      title: 'HealthConnect',
-      description: 'Telemedicine platform connecting patients with healthcare providers.',
+      key: 'healthconnect',
       image: '',
       tags: ['Angular', 'Python', 'AWS'],
       liveUrl: '#',
-      category: 'Healthcare',
-      features: ['Video consultations', 'Appointment scheduling', 'Medical records', 'Payment integration']
+      categoryKey: 'healthcare',
+      featureCount: 4
     },
     {
-      title: 'ShopVerse',
-      description: 'Multi-vendor e-commerce marketplace with AI-powered recommendations.',
+      key: 'shopverse',
       image: '',
       tags: ['React', 'Node.js', 'AWS'],
       liveUrl: '#',
-      category: 'E-Commerce',
-      features: ['AI recommendations', 'Multi-vendor support', 'Inventory management', 'Analytics dashboard']
+      categoryKey: 'ecommerce',
+      featureCount: 4
     },
     {
-      title: 'EduPlatform',
-      description: 'Online learning management system with interactive courses and certifications.',
+      key: 'eduplatform',
       image: '',
       tags: ['Angular', 'Python'],
       liveUrl: '#',
-      category: 'EdTech',
-      features: ['Video streaming', 'Progress tracking', 'Certification engine', 'Live classrooms']
+      categoryKey: 'edtech',
+      featureCount: 4
     },
     {
-      title: 'FitLife App',
-      description: 'Cross-platform fitness tracking app with personalized workout plans.',
+      key: 'fitlife',
       image: '',
       tags: ['Flutter', 'Node.js'],
       liveUrl: '#',
-      category: 'Mobile',
-      features: ['Workout tracking', 'Nutrition planning', 'Social features', 'Wearable integration']
+      categoryKey: 'mobile',
+      featureCount: 4
     },
     {
-      title: 'CloudDeploy',
-      description: 'CI/CD automation platform for streamlined deployment workflows.',
+      key: 'clouddeploy',
       image: '',
       tags: ['Angular', 'Python', 'AWS'],
       liveUrl: '#',
-      category: 'DevOps',
-      features: ['Pipeline builder', 'Auto-scaling', 'Monitoring', 'Multi-cloud support']
+      categoryKey: 'devops',
+      featureCount: 4
     }
   ];
 
@@ -89,6 +86,14 @@ export class PortfolioComponent {
 
   filterByTag(tag: string): void {
     this.selectedTag.set(tag);
+  }
+
+  featureIndexes(count: number): number[] {
+    return Array.from({ length: count }, (_, i) => i);
+  }
+
+  translatedTag(tag: string): string {
+    return tag === 'All' ? this.i18n.t('portfolio.filterAll') : tag;
   }
 
   openModal(project: Project): void {

@@ -1,11 +1,12 @@
 import { Component, signal, ElementRef, ViewChild, AfterViewInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { isPlatformBrowser } from '@angular/common';
+import { TranslatePipe } from '../../core/i18n/translate.pipe';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, TranslatePipe],
   templateUrl: './contact.html',
   styleUrl: './contact.scss',
 })
@@ -18,15 +19,15 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
-  projectTypes = [
-    'Web Application',
-    'Mobile App',
-    'E-Commerce Platform',
-    'Cloud Infrastructure',
-    'AI / Machine Learning',
-    'Custom Software',
-    'UI/UX Design',
-    'Other'
+  projectTypeKeys = [
+    'webApp',
+    'mobileApp',
+    'ecommerce',
+    'cloud',
+    'aiMl',
+    'customSoftware',
+    'uiUx',
+    'other'
   ];
 
   formData = {

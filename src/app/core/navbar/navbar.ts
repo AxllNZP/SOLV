@@ -1,24 +1,29 @@
-import { Component, signal, HostListener } from '@angular/core';
+import { Component, signal, HostListener, inject } from '@angular/core';
+import { TranslatePipe } from '../i18n/translate.pipe';
+import { TranslationService } from '../i18n/translation.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
+  imports: [TranslatePipe],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
 export class NavbarComponent {
+  i18n = inject(TranslationService);
+
   logoIcon = '</>';
   isScrolled = signal(false);
   isMobileMenuOpen = signal(false);
 
   navLinks = [
-    { label: 'Home', href: '#hero' },
-    { label: 'Services', href: '#services' },
-    { label: 'Portfolio', href: '#portfolio' },
-    { label: 'About', href: '#about' },
-    { label: 'Tech Stack', href: '#tech-stack' },
-    { label: 'Testimonials', href: '#testimonials' },
-    { label: 'Contact', href: '#contact' },
+    { key: 'nav.home', href: '#hero' },
+    { key: 'nav.services', href: '#services' },
+    { key: 'nav.portfolio', href: '#portfolio' },
+    { key: 'nav.about', href: '#about' },
+    { key: 'nav.techStack', href: '#tech-stack' },
+    { key: 'nav.testimonials', href: '#testimonials' },
+    { key: 'nav.contact', href: '#contact' },
   ];
 
   @HostListener('window:scroll')
