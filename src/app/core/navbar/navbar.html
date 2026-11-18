@@ -1,0 +1,47 @@
+<nav class="navbar" [class.scrolled]="isScrolled()">
+  <div class="navbar__container container">
+    <!-- Logo -->
+    <a class="navbar__logo" (click)="scrollTo('#hero')">
+      <span class="navbar__logo-icon">{{ logoIcon }}</span>
+      <span class="navbar__logo-text">Solv</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <ul class="navbar__links">
+      @for (link of navLinks; track link.href) {
+        <li>
+          <a class="navbar__link" (click)="scrollTo(link.href)">{{ link.label }}</a>
+        </li>
+      }
+    </ul>
+
+    <!-- CTA Button -->
+    <a class="navbar__cta" (click)="scrollTo('#contact')">Let's Talk</a>
+
+    <!-- Mobile Burger -->
+    <button
+      class="navbar__burger"
+      [class.active]="isMobileMenuOpen()"
+      (click)="toggleMobileMenu()"
+      aria-label="Toggle menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="navbar__mobile" [class.open]="isMobileMenuOpen()">
+    <ul class="navbar__mobile-links">
+      @for (link of navLinks; track link.href) {
+        <li>
+          <a class="navbar__mobile-link" (click)="scrollTo(link.href)">{{ link.label }}</a>
+        </li>
+      }
+      <li>
+        <a class="navbar__mobile-cta" (click)="scrollTo('#contact')">Let's Talk</a>
+      </li>
+    </ul>
+  </div>
+</nav>
