@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(node_modules/**)",
+      "Read(.next/**)",
+      "Read(out/**)",
+      "Read(.wrangler/**)",
+      "Read(package-lock.json)",
+      "Grep(node_modules/**)",
+      "Grep(.next/**)",
+      "Grep(out/**)"
+    ]
+  }
+}
