@@ -1,22 +1,24 @@
+"use client";
+
 import Link from "next/link";
+import { useLocale } from "@/components/LocaleProvider";
 import { CONTACT_EMAIL, SITE_NAME } from "@/lib/site";
 
-const links = [
-  { href: "/", label: "Inicio" },
-  { href: "/privacidad", label: "Política de Privacidad" },
-  { href: "/terminos", label: "Términos de Uso" },
-  { href: "/cookies", label: "Política de Cookies" },
-];
-
 export default function Footer() {
+  const { t } = useLocale();
+  const links = [
+    { href: "/", label: t.footer.home },
+    { href: "/privacidad", label: t.footer.privacy },
+    { href: "/terminos", label: t.footer.terms },
+    { href: "/cookies", label: t.footer.cookies },
+  ];
+
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto grid max-w-6xl gap-8 px-6 py-10 md:grid-cols-2">
         <div>
           <p className="text-lg font-extrabold text-accent">{SITE_NAME}</p>
-          <p className="mt-2 max-w-sm text-sm text-muted">
-            Estudio digital que crea herramientas web ágiles y privadas, que se ejecutan en tu navegador.
-          </p>
+          <p className="mt-2 max-w-sm text-sm text-muted">{t.footer.description}</p>
           <a
             href={`mailto:${CONTACT_EMAIL}`}
             className="mt-3 inline-block text-sm text-accent2 hover:underline"
@@ -35,7 +37,7 @@ export default function Footer() {
         </ul>
       </div>
       <p className="border-t border-border py-4 text-center text-xs text-muted">
-        © {SITE_NAME}. Todos los derechos reservados.
+        © {SITE_NAME}. {t.footer.rights}
       </p>
     </footer>
   );

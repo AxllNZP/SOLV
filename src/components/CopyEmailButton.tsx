@@ -1,15 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocale } from "@/components/LocaleProvider";
 
 export default function CopyEmailButton({ email }: { email: string }) {
+  const { t } = useLocale();
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+    const id = window.setTimeout(() => setCopied(false), 2000);
+    return () => window.clearTimeout(id);
+  }, [copied]);
 
   async function copy() {
     try {
       await navigator.clipboard.writeText(email);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
     } catch {
       setCopied(false);
     }
@@ -22,7 +29,7 @@ export default function CopyEmailButton({ email }: { email: string }) {
       aria-live="polite"
       className="rounded-lg border border-border px-5 py-3 text-sm font-semibold transition-colors hover:border-accent"
     >
-      {copied ? "¡Copiado!" : "Copiar correo"}
+      {copied ? t.contact.copied : t.contact.copy}
     </button>
   );
 }

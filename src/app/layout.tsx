@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import { LocaleProvider } from "@/components/LocaleProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ADSENSE_CLIENT, SITE_NAME, SITE_URL } from "@/lib/site";
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${jakarta.variable} h-full antialiased`}>
+    <html lang="es" className={`${jakarta.variable} h-full scroll-smooth antialiased`}>
       <head>
         <script
           async
@@ -51,9 +52,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        <div className="flex-1">{children}</div>
-        <Footer />
+        <LocaleProvider>
+          <Navbar />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </LocaleProvider>
       </body>
     </html>
   );
