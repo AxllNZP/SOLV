@@ -8,7 +8,7 @@ Portal corporativo oficial de **SOLV** (`https://solv.quest`), despliegue estát
 - TypeScript estricto y Tailwind CSS.
 - Idioma: 100% español (`lang="es"`).
 - Estética: modo oscuro grafito/azul marino profundo (`#0B0F19`) con acentos azul eléctrico (`#3B82F6`) y cian (`#06B6D4`).
-- Contacto oficial: `developer@solv.quest`.
+- Contacto oficial: `contact@solv.quest`.
 - Producto principal enlazado: **El Comparinizador** (`https://comparinizador.solv.quest`).
 
 ## Protocolo de Ejecución (Bajo consumo de tokens)
