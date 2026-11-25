@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLocale } from "@/components/LocaleProvider";
-import { CONTACT_EMAIL, SITE_NAME, type Locale } from "@/lib/site";
+import { SITE_NAME, type Locale } from "@/lib/site";
 
 const LOCALES: Locale[] = ["es", "en"];
 
@@ -49,12 +49,12 @@ export default function Navbar() {
               </button>
             ))}
           </div>
-          <a
-            href={`mailto:${CONTACT_EMAIL}`}
+          <Link
+            href="/#contacto"
             className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent2"
           >
             {t.nav.cta}
-          </a>
+          </Link>
         </div>
       </nav>
     </header>
