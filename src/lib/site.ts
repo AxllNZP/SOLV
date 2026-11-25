@@ -10,6 +10,7 @@ export const AMAZON_FBA_URL: string = "https://amazon-fba.solv.quest";
 export const FOUNDER_NAME: string = "Axell Zurita";
 export const GITHUB_URL: string = "https://github.com/AxllNZP";
 export const LINKEDIN_URL: string = "https://www.linkedin.com/in/axell-zurita-a7502b343/";
+export const FOUNDER_GMAIL_URL: string = "https://mail.google.com/mail/?view=cm&fs=1&to=axellzurita1003@gmail.com&su=Contacto%20desde%20SOLV";
 export const LAST_UPDATED: string = "17 de noviembre de 2026";
 
 export type Locale = "es" | "en";
@@ -122,11 +123,9 @@ const esCopy = {
   founder: {
     title: "Quién lidera SOLV",
     name: FOUNDER_NAME,
-    role: "Fundador & Ingeniero de Software en SOLV",
+    role: "Fundador de SOLV · Estudiante de Ingeniería de Sistemas (UTP) · Enfoque en Ciberseguridad & AI Security",
     bio: [
-      "Automatizo procesos operativos para que tu equipo deje de perder tiempo en tareas manuales.",
-      "Desarrollo web rápido y sin exceso de código, pensado para el borde de la red.",
-      "Construyo herramientas con privacidad por diseño: tus datos se procesan en tu dispositivo.",
+      "Futuro Ingeniero de Sistemas por la UTP, especializado en automatización de procesos operativos, ciberseguridad e ingeniería en seguridad de inteligencia artificial (AI Security). Construyo software ágil y herramientas web con privacidad por diseño, donde tus datos se procesan localmente sin exponerse a servidores externos.",
     ],
     github: "GitHub",
     linkedin: "LinkedIn",
@@ -267,11 +266,9 @@ export const COPY: Record<Locale, SiteCopy> = {
     founder: {
       title: "Who leads SOLV",
       name: FOUNDER_NAME,
-      role: "Founder & Software Engineer at SOLV",
+      role: "Founder at SOLV · Systems Engineering Student (UTP) · Focused on Cybersecurity & AI Security",
       bio: [
-        "I automate operational processes so your team stops losing time on manual tasks.",
-        "Fast, lean web development built for the network edge.",
-        "I build privacy-by-design tools: your data is processed on your own device.",
+        "Systems Engineering student at UTP specializing in operational process automation, cybersecurity, and AI Security Engineering. I build fast web software and privacy-by-design tools where your data is processed locally without exposure to external servers.",
       ],
       github: "GitHub",
       linkedin: "LinkedIn",

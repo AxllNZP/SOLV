@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "@/components/LocaleProvider";
-import { CONTACT_EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
+import { FOUNDER_GMAIL_URL, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 
 export default function Founder() {
   const { t } = useLocale();
@@ -11,7 +11,7 @@ export default function Founder() {
     { href: GITHUB_URL, label: f.github },
     { href: LINKEDIN_URL, label: f.linkedin },
   ].filter((l) => isValid(l.href));
-  links.push({ href: `mailto:${CONTACT_EMAIL}`, label: f.email });
+  links.push({ href: FOUNDER_GMAIL_URL, label: f.email });
 
   return (
     <section id="fundador" className="scroll-mt-20 py-16">
@@ -32,9 +32,15 @@ export default function Founder() {
           <ul className="mt-4 flex flex-wrap justify-center gap-4 text-sm sm:justify-start">
             {links.map((l) => (
               <li key={l.label}>
-                <a href={l.href} className="text-accent hover:underline" rel="me noopener">
-                  {l.label}
-                </a>
+                {l.href === FOUNDER_GMAIL_URL ? (
+                  <a href={l.href} className="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+                    {l.label}
+                  </a>
+                ) : (
+                  <a href={l.href} className="text-accent hover:underline" rel="me noopener">
+                    {l.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
