@@ -5,8 +5,8 @@ export const ADSENSE_CLIENT: string = "ca-pub-6708132675087655";
 export const COMPARINIZADOR_URL: string = "https://comparinizador.solv.quest";
 export const AMAZON_FBA_URL: string = "https://amazon-fba.solv.quest";
 export const FOUNDER_NAME: string = "Axell Zurita";
-export const GITHUB_URL: string = "{{GITHUB_URL}}";
-export const LINKEDIN_URL: string = "{{LINKEDIN_URL}}";
+export const GITHUB_URL: string = "https://github.com/AxllNZP";
+export const LINKEDIN_URL: string = "https://www.linkedin.com/feed/";
 export const LAST_UPDATED: string = "17 de noviembre de 2026";
 
 export type Locale = "es" | "en";
