@@ -17,7 +17,7 @@ export default function Footer() {
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto grid max-w-6xl gap-8 px-6 py-10 md:grid-cols-2">
         <div>
-          <p className="text-lg font-extrabold text-accent">{SITE_NAME}</p>
+          <img src="/logo-horizontal.webp" alt="SOLV QUEST" width={160} height={80} loading="lazy" className="h-auto w-40" />
           <p className="mt-2 max-w-sm text-sm text-muted">{t.footer.description}</p>
           <a
             href={`mailto:${CONTACT_EMAIL}`}

@@ -1,4 +1,5 @@
 import Contact from "@/components/landing/Contact";
+import Founder from "@/components/landing/Founder";
 import Hero from "@/components/landing/Hero";
 import Methodology from "@/components/landing/Methodology";
 import Products from "@/components/landing/Products";
@@ -11,6 +12,7 @@ export default function Home() {
       <Solutions />
       <Products />
       <Methodology />
+      <Founder />
       <Contact />
     </main>
   );

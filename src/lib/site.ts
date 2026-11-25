@@ -4,6 +4,9 @@ export const CONTACT_EMAIL: string = "contact@solv.quest";
 export const ADSENSE_CLIENT: string = "ca-pub-6708132675087655";
 export const COMPARINIZADOR_URL: string = "https://comparinizador.solv.quest";
 export const AMAZON_FBA_URL: string = "https://amazon-fba.solv.quest";
+export const FOUNDER_NAME: string = "Axell Zurita";
+export const GITHUB_URL: string = "{{GITHUB_URL}}";
+export const LINKEDIN_URL: string = "{{LINKEDIN_URL}}";
 export const LAST_UPDATED: string = "17 de noviembre de 2026";
 
 export type Locale = "es" | "en";
@@ -110,9 +113,22 @@ const esCopy = {
     },
     {
       q: "¿Qué tan precisos son los cálculos de FBA y la comparación de documentos?",
-      a: "La calculadora FBA usa las tablas de tarifas publicadas por Amazon para 2026 y muestra cada componente del cálculo para que puedas verificarlo; es una estimación y no sustituye tu informe oficial. El Comparinizador compara el texto extraído de forma determinista, aunque en PDFs escaneados la calidad depende del texto incrustado.",
+      a: "La calculadora FBA usa las tablas de tarifas publicadas por Amazon para 2026 y muestra cada componente del cálculo para que puedas verificarlo; es una estimación y no sustituye tu informe oficial. El Comparinizador compara el texto extraído de forma determinista, y para PDFs escaneados incluye OCR local ejecutado en el navegador mediante Tesseract.js, por lo que tus archivos siguen sin salir de tu dispositivo.",
     },
   ],
+  founder: {
+    title: "Quién lidera SOLV",
+    name: FOUNDER_NAME,
+    role: "Fundador & Ingeniero de Software en SOLV",
+    bio: [
+      "Automatizo procesos operativos para que tu equipo deje de perder tiempo en tareas manuales.",
+      "Desarrollo web rápido y sin exceso de código, pensado para el borde de la red.",
+      "Construyo herramientas con privacidad por diseño: tus datos se procesan en tu dispositivo.",
+    ],
+    github: "GitHub",
+    linkedin: "LinkedIn",
+    email: "Correo",
+  },
   contact: {
     title: "Canal Directo",
     text: "Cuéntanos qué proceso te quita tiempo y te respondemos con un primer diagnóstico.",
@@ -226,9 +242,22 @@ export const COPY: Record<Locale, SiteCopy> = {
       },
       {
         q: "How accurate are the FBA calculations and document comparisons?",
-        a: "The FBA calculator uses Amazon's published 2026 fee tables and shows every component of the calculation so you can verify it; it is an estimate and does not replace your official report. El Comparinizador compares extracted text deterministically, though for scanned PDFs quality depends on the embedded text.",
+        a: "The FBA calculator uses Amazon's published 2026 fee tables and shows every component of the calculation so you can verify it; it is an estimate and does not replace your official report. El Comparinizador compares extracted text deterministically, and for scanned PDFs it includes local OCR run in the browser through Tesseract.js, so your files still never leave your device.",
       },
     ],
+    founder: {
+      title: "Who leads SOLV",
+      name: FOUNDER_NAME,
+      role: "Founder & Software Engineer at SOLV",
+      bio: [
+        "I automate operational processes so your team stops losing time on manual tasks.",
+        "Fast, lean web development built for the network edge.",
+        "I build privacy-by-design tools: your data is processed on your own device.",
+      ],
+      github: "GitHub",
+      linkedin: "LinkedIn",
+      email: "Email",
+    },
     contact: {
       title: "Direct Line",
       text: "Tell us which process is eating your time and we will reply with a first diagnosis.",
