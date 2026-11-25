@@ -6,7 +6,7 @@ export const COMPARINIZADOR_URL: string = "https://comparinizador.solv.quest";
 export const AMAZON_FBA_URL: string = "https://amazon-fba.solv.quest";
 export const FOUNDER_NAME: string = "Axell Zurita";
 export const GITHUB_URL: string = "https://github.com/AxllNZP";
-export const LINKEDIN_URL: string = "https://www.linkedin.com/feed/";
+export const LINKEDIN_URL: string = "https://www.linkedin.com/in/axell-zurita-a7502b343/";
 export const LAST_UPDATED: string = "17 de noviembre de 2026";
 
 export type Locale = "es" | "en";
