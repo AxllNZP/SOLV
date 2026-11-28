@@ -12,12 +12,13 @@ export default function Navbar() {
     { href: "/#soluciones", label: t.nav.solutions },
     { href: "/#productos", label: t.nav.products },
     { href: "/#metodologia", label: t.nav.methodology },
+    { href: "/guias", label: t.nav.guides },
     { href: "/#contacto", label: t.nav.contact },
   ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-4 md:gap-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 text-xl font-extrabold tracking-tight">
           <img src="/logo-icon.webp" alt="SOLV" width={32} height={32} className="h-8 w-8 shrink-0" />
           <span className="bg-gradient-to-r from-accent to-accent2 bg-clip-text text-transparent">
@@ -33,8 +34,11 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <div className="flex items-center gap-3">
-          <div role="group" aria-label={t.nav.switchLabel} className="flex overflow-hidden rounded-lg border border-border text-xs font-semibold">
+        <div className="flex items-center gap-2 md:gap-3">
+          <Link href="/guias" className="text-sm text-muted hover:text-foreground md:hidden">
+            {t.nav.guides}
+          </Link>
+          <div role="group" aria-label={t.nav.switchLabel} className="flex shrink-0 overflow-hidden rounded-lg border border-border text-xs font-semibold">
             {LOCALES.map((l) => (
               <button
                 key={l}

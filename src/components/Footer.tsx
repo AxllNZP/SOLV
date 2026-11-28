@@ -8,6 +8,8 @@ export default function Footer() {
   const { t } = useLocale();
   const links = [
     { href: "/", label: t.footer.home },
+    { href: "/guias", label: t.footer.guides },
+    { href: "/herramientas/calculadora-roi", label: t.footer.roi },
     { href: "/privacidad", label: t.footer.privacy },
     { href: "/terminos", label: t.footer.terms },
     { href: "/cookies", label: t.footer.cookies },
